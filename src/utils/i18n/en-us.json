@@ -1,0 +1,15 @@
+{
+  "translation": {
+    "auth": {
+      "form": {
+        "title": "Log in",
+        "email": "E-mail",
+        "password": "Password",
+        "btn-login": "Login",
+        "forgot-password": "I forgot my password"
+      },
+      "register": "Don't have a registration yet?",
+      "click-here": "Click here"
+    }
+  }
+}

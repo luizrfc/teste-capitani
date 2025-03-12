@@ -3,6 +3,7 @@ import theme from './src/styles';
 import React from 'react';
 import {ScrollView, Text} from 'react-native';
 import {SafeAreaProvider} from 'react-native-safe-area-context';
+import '@utils/i18n';
 
 function App(): React.JSX.Element {
   return (
