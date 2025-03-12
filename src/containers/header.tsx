@@ -1,17 +1,22 @@
-import React, {Fragment} from 'react';
+import React from 'react';
 
 import {
   HeaderGradient,
   LanguageContainer,
-  LanguageImage,
+  BtnLanguage,
   LogoImage,
   Separator,
   SeparatorItem,
+  HeaderContainer,
 } from '@src/styles/header.style';
+import {Image} from '@rneui/base';
+import useLanguage from '@src/hooks/useLanguage';
 
 export default function Header() {
+  const {handleChangeLanguage, language} = useLanguage();
+
   return (
-    <Fragment>
+    <HeaderContainer>
       <HeaderGradient
         colors={['#DE473C', '#FDD042']}
         start={{x: 0, y: 0}}
@@ -19,14 +24,28 @@ export default function Header() {
         <LogoImage source={require('@src/assets/logo.png')} />
 
         <LanguageContainer>
-          <LanguageImage source={require('@src/assets/br-flag.png')} />
-          <LanguageImage source={require('@src/assets/eng-flag.png')} />
+          <BtnLanguage
+            onPress={() => handleChangeLanguage('ptBR')}
+            selected={language === 'ptBR'}>
+            <Image
+              source={require('@src/assets/br-flag.png')}
+              style={{width: 36, height: 24}}
+            />
+          </BtnLanguage>
+          <BtnLanguage
+            onPress={() => handleChangeLanguage('enUS')}
+            selected={language === 'enUS'}>
+            <Image
+              source={require('@src/assets/eng-flag.png')}
+              style={{width: 36, height: 24}}
+            />
+          </BtnLanguage>
         </LanguageContainer>
       </HeaderGradient>
       <Separator>
         <SeparatorItem color="#FDD042" />
         <SeparatorItem color="#DE473C" />
       </Separator>
-    </Fragment>
+    </HeaderContainer>
   );
 }

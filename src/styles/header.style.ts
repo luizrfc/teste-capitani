@@ -1,7 +1,11 @@
 import styled from 'styled-components';
-import {View} from 'react-native';
+import {TouchableOpacity, View} from 'react-native';
 import LinearGradient from 'react-native-linear-gradient';
 import {Image} from '@rneui/base';
+
+const HeaderContainer = styled(View)`
+  background-color: #ccc;
+`;
 
 const HeaderGradient = styled(LinearGradient)`
   justify-content: flex-end;
@@ -23,9 +27,21 @@ const LanguageContainer = styled(View)`
   gap: 12;
 `;
 
-const LanguageImage = styled(Image)`
-  width: 36;
-  height: 24;
+interface LanguageImageProps {
+  selected: boolean;
+}
+
+const BtnLanguage = styled(TouchableOpacity)<LanguageImageProps>`
+  border-width: 4;
+  padding-left: 2;
+  padding-right: 2;
+  padding-top: 2;
+  padding-bottom: 2;
+  border-top-left-radius: 8;
+  border-top-right-radius: 8;
+  border-bottom-left-radius: 8;
+  border-bottom-right-radius: 8;
+  border-color: ${props => (props.selected ? '#FFF' : 'transparent')};
 `;
 
 const Separator = styled(View)`
@@ -44,10 +60,11 @@ const SeparatorItem = styled(View)<SeparatorItemProps>`
 `;
 
 export {
+  HeaderContainer,
   HeaderGradient,
   LogoImage,
   LanguageContainer,
-  LanguageImage,
+  BtnLanguage,
   Separator,
   SeparatorItem,
 };

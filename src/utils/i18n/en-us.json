@@ -1,8 +1,8 @@
 {
   "translation": {
     "auth": {
+      "title": "Login",
       "form": {
-        "title": "Log in",
         "email": "E-mail",
         "password": "Password",
         "btn-login": "Login",
@@ -10,6 +10,9 @@
       },
       "register": "Don't have a registration yet?",
       "click-here": "Click here"
+    },
+    "home": {
+      "title": "Home"
     }
   }
 }

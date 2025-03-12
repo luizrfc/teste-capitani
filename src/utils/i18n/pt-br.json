@@ -1,8 +1,8 @@
 {
   "translation": {
     "auth": {
+      "title": "Faça seu login",
       "form": {
-        "title": "Faça seu login",
         "email": "E-mail",
         "password": "Senha",
         "btn-login": "Logar",
@@ -10,6 +10,9 @@
       },
       "register": "Ainda não possui cadastro?",
       "click-here": "Clique aqui"
+    },
+    "home": {
+      "title": "Início"
     }
   }
 }
