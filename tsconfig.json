@@ -1,32 +1,10 @@
 {
   "extends": "@tsconfig/react-native/tsconfig.json",
   "compilerOptions": {
-    "baseUrl": ".",
+    "baseUrl": "./",
     "paths": {
-      "@/*": [
-        "./*"
-      ],
-      "tests": [
-        "tests/*"
-      ],
-      "@components/*": [
-        "src/components/*"
-      ],
-      "@hooks/*": [
-        "src/hooks/*"
-      ],
-      "@utils/*": [
-        "src/utils/*"
-      ],
-      "@styles/*": [
-        "src/styles/*"
-      ],
-      "@services/*": [
-        "src/services/*"
-      ],
-      "@shared/*": [
-        "src/shared/*"
-      ],    
+      "@src/*": ["src/*"],   
     },
-  }
+  },
+  "exclude": ["node_modules", "babel.config.js", "metro.config.js"]
 }
