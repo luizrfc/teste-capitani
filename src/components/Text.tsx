@@ -7,6 +7,7 @@ interface TextProps {
   fontWeight?: 'normal' | 'bold';
   color?: string;
   textAlign?: 'left' | 'center' | 'right';
+  textTransform?: 'uppercase' | 'lowercase' | 'capitalize' | 'none';
 }
 
 function Text({
@@ -15,6 +16,7 @@ function Text({
   fontWeight = 'normal',
   color = '#000',
   textAlign = 'left',
+  textTransform = 'none',
 }: TextProps) {
   return (
     <RNText
@@ -23,6 +25,7 @@ function Text({
         fontWeight,
         color,
         textAlign,
+        textTransform,
       }}>
       {children}
     </RNText>

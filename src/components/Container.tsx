@@ -7,14 +7,21 @@ interface ContainerProps {
   scrollable?: boolean;
   scrollEnabled?: boolean;
   style?: object;
+  bgColor?: string;
 }
 
-function Container({children, scrollEnabled = false, style}: ContainerProps) {
+function Container({
+  children,
+  scrollEnabled = false,
+  style,
+  bgColor,
+}: ContainerProps) {
   return (
     <ScrollView
       scrollEnabled={scrollEnabled}
       style={{
         padding: 24,
+        backgroundColor: bgColor || '#fff',
         ...style,
       }}>
       {children}

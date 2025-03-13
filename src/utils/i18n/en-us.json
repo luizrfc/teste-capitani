@@ -4,7 +4,9 @@
       "title": "Login",
       "form": {
         "email": "E-mail",
+        "email-placeholder": "Enter your email",
         "password": "Password",
+        "password-placeholder": "Enter your password",
         "btn-login": "Login",
         "forgot-password": "I forgot my password"
       },
