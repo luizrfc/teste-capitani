@@ -8,10 +8,24 @@
         "password": "Password",
         "password-placeholder": "Enter your password",
         "btn-login": "Login",
-        "forgot-password": "I forgot my password"
+        "forgot-password": "I forgot my password",
+        "btn-register": "Register here!"
       },
       "register": "Don't have a registration yet?",
       "click-here": "Click here"
+    },
+    "register": {
+      "title": "Register",
+      "form": {
+        "name": "Name",
+        "name-placeholder": "Enter your name",
+        "email": "E-mail",
+        "email-placeholder": "Enter your email",
+        "password": "Password",
+        "password-placeholder": "Enter your password",
+        "btn-register": "Register",
+        "btn-login": "Back to login"
+      }
     },
     "home": {
       "title": "Home"

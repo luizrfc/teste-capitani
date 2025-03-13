@@ -8,10 +8,24 @@
         "password": "Senha",
         "password-placeholder": "Digite sua senha",
         "btn-login": "Logar",
-        "forgot-password": "Esqueci minha senha"
+        "forgot-password": "Esqueci minha senha",
+        "btn-register": "Cadastre-se aqui!"
       },
       "register": "Ainda não possui cadastro?",
       "click-here": "Clique aqui"
+    },
+    "register": {
+      "title": "Faça seu cadastro",
+      "form": {
+        "name": "Nome",
+        "name-placeholder": "Digite seu nome",
+        "email": "E-mail",
+        "email-placeholder": "Digite seu e-mail",
+        "password": "Senha",
+        "password-placeholder": "Digite sua senha",
+        "btn-register": "Cadastrar",
+        "btn-login": "Voltar para o login"
+      }
     },
     "home": {
       "title": "Início"

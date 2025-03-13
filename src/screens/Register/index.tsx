@@ -1,15 +1,15 @@
 import React from 'react';
 import {View} from 'react-native';
-import {useNavigation} from '@react-navigation/native';
+import { useNavigation } from '@react-navigation/native';
 import {useTranslation} from 'react-i18next';
 import {Button, Container, Input, Text} from '@src/components';
-import useAuthHook from './auth.hook';
+import useRegisterHook from './register.hook';
 
-function Auth() {
+function Register() {
   const {t} = useTranslation();
   const navigation = useNavigation();
 
-  const {control, handleSubmit, onSubmit, isValid} = useAuthHook();
+  const {control, handleSubmit, onSubmit, isValid} = useRegisterHook();
 
   return (
     <Container>
@@ -17,37 +17,45 @@ function Auth() {
         <View style={{flexDirection: 'column', gap: 24, paddingTop: 20}}>
           <View>
             <Text fontSize={20} fontWeight="bold" color="#000">
-              {t('auth.title')}
+              {t('register.title')}
             </Text>
           </View>
           <View style={{flexDirection: 'column', gap: 24, paddingTop: 20}}>
             <View>
               <Input
+                name="name"
+                control={control}
+                placeholder={t('register.form.name-placeholder')}
+                label={t('register.form.name')}
+              />
+            </View>
+            <View>
+              <Input
                 name="email"
                 control={control}
-                placeholder={t('auth.form.email-placeholder')}
-                label={t('auth.form.email')}
+                placeholder={t('register.form.email-placeholder')}
+                label={t('register.form.email')}
               />
             </View>
             <View>
               <Input
                 name="password"
                 control={control}
-                placeholder={t('auth.form.password-placeholder')}
+                placeholder={t('register.form.password-placeholder')}
                 password={true}
-                label={t('auth.form.password')}
+                label={t('register.form.password')}
               />
             </View>
             <Button
-              title={t('auth.form.btn-login')}
+              title={t('register.form.btn-register')}
               onPress={handleSubmit(onSubmit)}
               disabled={!isValid}
             />
             <Button
               bgColor="transparent"
-              title={t('auth.form.btn-register')}
+              title={t('register.form.btn-login')}
               // @ts-ignore
-              onPress={() => navigation.navigate('Register')}
+              onPress={() => navigation.navigate('Auth')}
             />
           </View>
         </View>
@@ -56,4 +64,4 @@ function Auth() {
   );
 }
 
-export default Auth;
+export default Register;
