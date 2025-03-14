@@ -13,6 +13,7 @@ import {
 import {useIsFocused, useFocusEffect} from '@react-navigation/native';
 import {yupResolver} from '@hookform/resolvers/yup';
 import {useCallback} from 'react';
+import {useAuth} from '@src/context/auth.context';
 
 interface IAuthHook {
   control: Control<IAuthSchema>;
@@ -23,6 +24,9 @@ interface IAuthHook {
 }
 
 const useAuthHook = (): IAuthHook => {
+  
+  const {signIn} = useAuth();
+
   const isFocused = useIsFocused();
   const {
     control,
@@ -38,7 +42,7 @@ const useAuthHook = (): IAuthHook => {
 
   const onSubmit = (data: IAuthSchema) => {
     Keyboard.dismiss();
-    console.log('🚀 ~ useAuthHook ~ data:', data);
+    signIn(data.email, data.password);
   };
 
   const resetFields = () => {

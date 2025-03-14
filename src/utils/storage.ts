@@ -2,11 +2,11 @@ import * as Storage from 'react-native-encrypted-storage';
 
 const variantKey = '@capitani';
 
-const saveStorage = async (key: string, value: string) => {
+const setStorage = async (key: string, value: string) => {
   try {
     await Storage.default.setItem(`${variantKey}:${key}`, value);
   } catch (error) {
-    console.log('🚀 ~ saveStorage ~ error:', error);
+    console.log('🚀 ~ setStorage ~ error:', error);
   }
 };
 
@@ -33,4 +33,4 @@ const removeStorage = async (key: string) => {
   }
 };
 
-export {saveStorage, getStorage, removeStorage};
+export {setStorage, getStorage, removeStorage};
