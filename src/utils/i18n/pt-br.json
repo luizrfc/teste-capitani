@@ -28,7 +28,13 @@
       }
     },
     "home": {
-      "title": "Início"
+      "title": "Início",
+      "btn-logout": "Sair"
+    },
+    "components": {
+      "loading": {
+        "loading": "Carregando"
+      }
     }
   }
 }

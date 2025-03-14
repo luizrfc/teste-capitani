@@ -1,4 +1,6 @@
 import React from 'react';
+import {Image} from '@rneui/base';
+import {View} from 'react-native';
 
 import {
   HeaderGradient,
@@ -7,16 +9,14 @@ import {
   LogoImage,
   Separator,
   SeparatorItem,
-  HeaderContainer,
 } from '@src/styles/header.style';
-import {Image} from '@rneui/base';
 import useLanguage from '@src/hooks/useLanguage';
 
 export default function Header() {
   const {handleChangeLanguage, language} = useLanguage();
 
   return (
-    <HeaderContainer>
+    <View>
       <HeaderGradient
         colors={['#DE473C', '#FDD042']}
         start={{x: 0, y: 0}}
@@ -46,6 +46,6 @@ export default function Header() {
         <SeparatorItem color="#FDD042" />
         <SeparatorItem color="#DE473C" />
       </Separator>
-    </HeaderContainer>
+    </View>
   );
 }

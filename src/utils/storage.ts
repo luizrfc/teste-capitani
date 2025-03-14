@@ -33,4 +33,12 @@ const removeStorage = async (key: string) => {
   }
 };
 
-export {setStorage, getStorage, removeStorage};
+const clearStorage = async () => {
+  try {
+    await Storage.default.clear();
+  } catch (error) {
+    console.log('🚀 ~ clearStorage ~ error:', error);
+  }
+};
+
+export {setStorage, getStorage, removeStorage, clearStorage};

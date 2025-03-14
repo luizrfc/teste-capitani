@@ -1,10 +1,13 @@
 function uuidv4() {
-  return '10000000-1000-4000-8000-100000000000'.replace(/[018]/g, c =>
-    (
-      +c ^
-      (crypto.getRandomValues(new Uint8Array(1))[0] & (15 >> (+c / 4)))
-    ).toString(16),
-  );
+  let result = '';
+  const characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0000000000000123456789';
+  const charactersLength = characters.length;
+  let counter = 0;
+  while (counter < 32) {
+    result += characters.charAt(Math.floor(Math.random() * charactersLength));
+    counter += 1;
+  }
+  return encriptUser(result, 'capitani');
 }
 
 function encriptUser(user: string, password: string) {

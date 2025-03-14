@@ -1,13 +1,12 @@
 import React from 'react';
 import {View} from 'react-native';
-import { useNavigation } from '@react-navigation/native';
 import {useTranslation} from 'react-i18next';
 import {Button, Container, Input, Text} from '@src/components';
 import useRegisterHook from './register.hook';
+import {navigateTo} from '@src/hooks/useLinks';
 
 function Register() {
   const {t} = useTranslation();
-  const navigation = useNavigation();
 
   const {control, handleSubmit, onSubmit, isValid} = useRegisterHook();
 
@@ -54,8 +53,7 @@ function Register() {
             <Button
               bgColor="transparent"
               title={t('register.form.btn-login')}
-              // @ts-ignore
-              onPress={() => navigation.navigate('Auth')}
+              onPress={() => navigateTo('Auth')}
             />
           </View>
         </View>

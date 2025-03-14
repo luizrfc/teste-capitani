@@ -3,10 +3,6 @@ import {TouchableOpacity, View} from 'react-native';
 import LinearGradient from 'react-native-linear-gradient';
 import {Image} from '@rneui/base';
 
-const HeaderContainer = styled(View)`
-  background-color: #ccc;
-`;
-
 const HeaderGradient = styled(LinearGradient)`
   justify-content: flex-end;
   align-items: center;
@@ -60,7 +56,6 @@ const SeparatorItem = styled(View)<SeparatorItemProps>`
 `;
 
 export {
-  HeaderContainer,
   HeaderGradient,
   LogoImage,
   LanguageContainer,

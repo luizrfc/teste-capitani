@@ -1,4 +1,3 @@
-
 import {Keyboard} from 'react-native';
 import {
   Control,
@@ -9,7 +8,14 @@ import {
 import {useIsFocused, useFocusEffect} from '@react-navigation/native';
 import {yupResolver} from '@hookform/resolvers/yup';
 import {useCallback} from 'react';
-import { registerSchema, IRegisterSchema, registerInitialValues } from '@src/helpers/schemas/register.schema';
+import {
+  registerSchema,
+  IRegisterSchema,
+  registerInitialValues,
+} from '@src/helpers/schemas/register.schema';
+import {useConfig} from '@src/context/config.context';
+import {useAuth} from '@src/context/auth.context';
+import {navigateTo} from '@src/hooks/useLinks';
 
 interface IRegisterHook {
   control: Control<IRegisterSchema>;
@@ -20,6 +26,9 @@ interface IRegisterHook {
 }
 
 const useRegisterHook = (): IRegisterHook => {
+  const {handleLoading} = useConfig();
+  const {createUser} = useAuth();
+
   const isFocused = useIsFocused();
   const {
     control,
@@ -33,9 +42,22 @@ const useRegisterHook = (): IRegisterHook => {
     defaultValues: registerInitialValues,
   });
 
-  const onSubmit = (data: IRegisterSchema) => {
+  const onSubmit = async (data: IRegisterSchema) => {
+    handleLoading(true);
     Keyboard.dismiss();
-    console.log('🚀 ~ useRegisterHook ~ data:', data);
+    const user = await createUser({
+      name: data.name,
+      email: data.email,
+      password: data.password,
+    });
+    if (user) {
+      setTimeout(async () => {
+        navigateTo('Home');
+        handleLoading(false);
+      }, 1000);
+    } else {
+      handleLoading(false);
+    }
   };
 
   const resetFields = () => {

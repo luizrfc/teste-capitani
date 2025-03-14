@@ -4,11 +4,12 @@ export interface AuthDTO {
 }
 
 export interface UserDTO {
-  id: string;
+  id?: string;
   name: string;
   email: string;
   password: string;
-  safeword: string;
-  createdAt: Date;
-  updatedAt: Date;
+  safeword?: string;
+  createdAt?: Date;
+  updatedAt?: Date;
+  code?: string;
 }

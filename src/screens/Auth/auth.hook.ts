@@ -14,6 +14,9 @@ import {useIsFocused, useFocusEffect} from '@react-navigation/native';
 import {yupResolver} from '@hookform/resolvers/yup';
 import {useCallback} from 'react';
 import {useAuth} from '@src/context/auth.context';
+import {useConfig} from '@src/context/config.context';
+
+import {navigateTo} from '@src/hooks/useLinks';
 
 interface IAuthHook {
   control: Control<IAuthSchema>;
@@ -24,8 +27,8 @@ interface IAuthHook {
 }
 
 const useAuthHook = (): IAuthHook => {
-  
   const {signIn} = useAuth();
+  const {handleLoading} = useConfig();
 
   const isFocused = useIsFocused();
   const {
@@ -40,17 +43,22 @@ const useAuthHook = (): IAuthHook => {
     defaultValues: authInitialValues,
   });
 
-  const onSubmit = (data: IAuthSchema) => {
+  const onSubmit = async (data: IAuthSchema) => {
+    handleLoading(true);
     Keyboard.dismiss();
-    signIn(data.email, data.password);
+    const response = await signIn(data.email, data.password);
+    if (response) {
+      setTimeout(() => {
+        handleLoading(false);
+        navigateTo('Home');
+      }, 1000);
+    } else {
+      handleLoading(false);
+    }
   };
 
   const resetFields = () => {
     reset(authInitialValues, {keepErrors: false, keepValues: false});
-  };
-
-  const hasSavedAuth = () => {
-    console.log('hasSavedAuth');
   };
 
   useFocusEffect(
@@ -58,7 +66,6 @@ const useAuthHook = (): IAuthHook => {
       if (isFocused) {
         resetFields();
       }
-      hasSavedAuth();
       // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [isFocused]),
   );

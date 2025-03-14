@@ -1,6 +1,7 @@
-import Text from './Text';
+import Button from './Button';
 import Container from './Container';
 import Input from './Inputs';
-import Button from './Button';
+import Loading from './Loading';
+import Text from './Text';
 
-export {Text, Container, Input, Button};
+export {Text, Container, Input, Button, Loading};

@@ -28,7 +28,13 @@
       }
     },
     "home": {
-      "title": "Home"
+      "title": "Home",
+      "btn-logout": "Logout"
+    },
+    "components": {
+      "loading": {
+        "loading": "Loading"
+      }
     }
   }
 }

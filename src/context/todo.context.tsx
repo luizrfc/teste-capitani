@@ -102,9 +102,9 @@ export const TodoProvider = ({children}: {children: React.ReactNode}) => {
   };
 
   const loadTodos = async () => {
-    const todos = await getStorage(`${user?.id}-todos`);
-    if (todos) {
-      setTodos(todos);
+    const _todos = await getStorage(`${user?.id}-todos`);
+    if (_todos) {
+      setTodos(JSON.parse(_todos));
     }
   };
 

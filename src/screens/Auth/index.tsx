@@ -1,13 +1,12 @@
 import React from 'react';
 import {View} from 'react-native';
-import {useNavigation} from '@react-navigation/native';
 import {useTranslation} from 'react-i18next';
 import {Button, Container, Input, Text} from '@src/components';
 import useAuthHook from './auth.hook';
+import {navigateTo} from '@src/hooks/useLinks';
 
 function Auth() {
   const {t} = useTranslation();
-  const navigation = useNavigation();
 
   const {control, handleSubmit, onSubmit, isValid} = useAuthHook();
 
@@ -47,7 +46,7 @@ function Auth() {
               bgColor="transparent"
               title={t('auth.form.btn-register')}
               // @ts-ignore
-              onPress={() => navigation.navigate('Register')}
+              onPress={() => navigateTo('Register')}
             />
           </View>
         </View>
