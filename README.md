@@ -1,97 +1,82 @@
-This is a new [**React Native**](https://reactnative.dev) project, bootstrapped using [`@react-native-community/cli`](https://github.com/react-native-community/cli).
 
-# Getting Started
+```markdown:README.md
+# Projeto To Do List
 
-> **Note**: Make sure you have completed the [Set Up Your Environment](https://reactnative.dev/docs/set-up-your-environment) guide before proceeding.
+Este é um projeto de teste para a empresa Capitani, um To Do List desenvolvido com React Native e Typescript, com objetivo de validar o conhecimento e aplicação de conceitos de React Native, Context API, Styled Components, React Navigation, React Native Reanimated e Async Storage.
 
-## Step 1: Start Metro
+## Bibliotecas Principais
 
-First, you will need to run **Metro**, the JavaScript build tool for React Native.
+- **React Navigation**: Utilizada para gerenciamento de rotas e navegação entre telas, facilitando a experiência do usuário.
+- **Context API**: Implementada para gerenciamento de estado global da aplicação, especialmente para os dados de tarefas (ToDo).
+- **i18n**: Sistema de internacionalização que permite a tradução da aplicação para diferentes idiomas (atualmente suporta português e inglês).
+- **Styled Components**: Biblioteca para estilização de componentes com CSS-in-JS, permitindo estilos dinâmicos e reutilizáveis.
+- **React Native Reanimated**: Utilizada para criar animações fluidas e de alta performance, melhorando a experiência do usuário com transições suaves.
+- **Async Storage**: Biblioteca para persistência de dados localmente, permitindo salvar as tarefas do usuário mesmo após o fechamento do aplicativo.
 
-To start the Metro dev server, run the following command from the root of your React Native project:
+## Estrutura de Pastas
 
-```sh
-# Using npm
-npm start
+- **src/**: Diretório principal do código fonte
+  - **components/**: Componentes reutilizáveis que podem ser utilizados em qualquer parte do projeto
+  - **context/**: Contextos React para gerenciamento de estado global da aplicação
+    - **todo.context.tsx**: Gerencia o estado das tarefas em toda a aplicação
+  - **screens/**: Telas da aplicação
+    - **Home/**: Tela inicial da aplicação
+    - **ToDo/**: Tela de gerenciamento de tarefas
+  - **utils/**: Utilitários e funções auxiliares
+    - **i18n/**: Arquivos de tradução para internacionalização
+      - **en-us.json**: Traduções em inglês
+      - **pt-br.json**: Traduções em português
 
-# OR using Yarn
-yarn start
-```
+## Como Executar o Projeto
 
-## Step 2: Build and run your app
+### Pré-requisitos
 
-With Metro running, open a new terminal window/pane from the root of your React Native project, and use one of the following commands to build and run your Android or iOS app:
+Certifique-se de ter configurado seu ambiente de desenvolvimento React Native conforme a [documentação oficial](https://reactnative.dev/docs/environment-setup).
 
-### Android
-
-```sh
-# Using npm
-npm run android
-
-# OR using Yarn
-yarn android
-```
-
-### iOS
-
-For iOS, remember to install CocoaPods dependencies (this only needs to be run on first clone or after updating native deps).
-
-The first time you create a new project, run the Ruby bundler to install CocoaPods itself:
+### Instalação
 
 ```sh
+# Clone o repositório
+git clone [url-do-repositorio]
+
+# Instale as dependências
+npm install
+# OU
+yarn install
+
+# Para iOS, instale as dependências do CocoaPods
 bundle install
-```
-
-Then, and every time you update your native dependencies, run:
-
-```sh
 bundle exec pod install
 ```
 
-For more information, please visit [CocoaPods Getting Started guide](https://guides.cocoapods.org/using/getting-started.html).
+### Executando
 
 ```sh
-# Using npm
-npm run ios
+# Inicie o Metro Bundler
+npm start
+# OU
+yarn start
 
-# OR using Yarn
+# Em outro terminal, execute o app no Android
+npm run android
+# OU
+yarn android
+
+# Ou no iOS
+npm run ios
+# OU
 yarn ios
 ```
 
-If everything is set up correctly, you should see your new app running in the Android Emulator, iOS Simulator, or your connected device.
+## Funcionalidades
 
-This is one way to run your app — you can also build it directly from Android Studio or Xcode.
+- Gerenciamento de tarefas (ToDo)
+- Suporte a múltiplos idiomas (português e inglês)
+- Interface responsiva e amigável
+- Persistência de dados localmente
+- Animações fluidas para melhor experiência do usuário
 
-## Step 3: Modify your app
+## Contribuição
 
-Now that you have successfully run the app, let's make changes!
-
-Open `App.tsx` in your text editor of choice and make some changes. When you save, your app will automatically update and reflect these changes — this is powered by [Fast Refresh](https://reactnative.dev/docs/fast-refresh).
-
-When you want to forcefully reload, for example to reset the state of your app, you can perform a full reload:
-
-- **Android**: Press the <kbd>R</kbd> key twice or select **"Reload"** from the **Dev Menu**, accessed via <kbd>Ctrl</kbd> + <kbd>M</kbd> (Windows/Linux) or <kbd>Cmd ⌘</kbd> + <kbd>M</kbd> (macOS).
-- **iOS**: Press <kbd>R</kbd> in iOS Simulator.
-
-## Congratulations! :tada:
-
-You've successfully run and modified your React Native App. :partying_face:
-
-### Now what?
-
-- If you want to add this new React Native code to an existing application, check out the [Integration guide](https://reactnative.dev/docs/integration-with-existing-apps).
-- If you're curious to learn more about React Native, check out the [docs](https://reactnative.dev/docs/getting-started).
-
-# Troubleshooting
-
-If you're having issues getting the above steps to work, see the [Troubleshooting](https://reactnative.dev/docs/troubleshooting) page.
-
-# Learn More
-
-To learn more about React Native, take a look at the following resources:
-
-- [React Native Website](https://reactnative.dev) - learn more about React Native.
-- [Getting Started](https://reactnative.dev/docs/environment-setup) - an **overview** of React Native and how setup your environment.
-- [Learn the Basics](https://reactnative.dev/docs/getting-started) - a **guided tour** of the React Native **basics**.
-- [Blog](https://reactnative.dev/blog) - read the latest official React Native **Blog** posts.
-- [`@facebook/react-native`](https://github.com/facebook/react-native) - the Open Source; GitHub **repository** for React Native.
+Contribuições são bem-vindas! Sinta-se à vontade para abrir issues ou enviar pull requests.
+```

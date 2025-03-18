@@ -1,0 +1,78 @@
+{
+  "translation": {
+    "auth": {
+      "title": "Faça seu login",
+      "form": {
+        "email": "E-mail",
+        "email-placeholder": "Digite seu e-mail",
+        "password": "Senha",
+        "password-placeholder": "Digite sua senha",
+        "btn-login": "Logar",
+        "forgot-password": "Esqueci minha senha",
+        "btn-register": "Cadastre-se aqui!"
+      },
+      "register": "Ainda não possui cadastro?",
+      "click-here": "Clique aqui"
+    },
+    "register": {
+      "title": "Faça seu cadastro",
+      "form": {
+        "name": "Nome",
+        "name-placeholder": "Digite seu nome",
+        "email": "E-mail",
+        "email-placeholder": "Digite seu e-mail",
+        "password": "Senha",
+        "password-placeholder": "Digite sua senha",
+        "btn-register": "Cadastrar",
+        "btn-login": "Voltar para o login"
+      }
+    },
+    "home": {
+      "title": "Tarefas",
+      "noTodos": "Você não possui tarefas a serem feitas!",
+      "noTodosDescription": "Clique no botão",
+      "noTodosDescription2": "abaixo para criar uma tarefa!",
+      "btn-clear": "Limpar tarefas concluídas"
+    },
+    "components": {
+      "loading": {
+        "loading": "Carregando"
+      }
+    },
+    "profile": {
+      "title": "Perfil",
+      "name": "Nome",
+      "email": "E-mail",
+      "code": "Código",
+      "btn-logout": "Sair",
+      "btn-remove-account": "Remover conta",
+      "btn-remove-todos": "Remover todas as tarefas",
+      "btn-cancel": "Voltar"
+    },
+    "todo": {
+      "title": "Nova Tarefa",
+      "subtask": {
+        "title": "Nova Subtarefa"
+      },
+      "form": {
+        "title": "Título",
+        "title-placeholder": "Digite o título da tarefa",
+        "description": "Descrição",
+        "description-placeholder": "Digite a descrição da tarefa",
+        "btn-add": "Adicionar Tarefa",
+        "btn-subtask": "Adicionar Subtarefa",
+        "btn-cancel": "Cancelar"
+      }
+    },
+    "details": {
+      "title": "Detalhes da Tarefa",
+      "btn-remove": "Remover Tarefa",
+      "btn-back": "Listar Tarefas",
+      "subtasks": "Subtarefas",
+      "subtasks-none": "Não há subtarefas para esta tarefa!",
+      "btn-edit": "Salvar Tarefa",
+      "subtasks-count": "Subtarefas",
+      "completed": "Concluído"
+    }
+  }
+}
