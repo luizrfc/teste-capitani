@@ -31,7 +31,8 @@
       "title": "Todo List",
       "noTodos": "You don't have any tasks to do!",
       "noTodosDescription": "Click on the button",
-      "noTodosDescription2": "below to create a task!"
+      "noTodosDescription2": "below to create a task!",
+      "btn-clear": "Clear completed tasks"
     },
     "components": {
       "loading": {

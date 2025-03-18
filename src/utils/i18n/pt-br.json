@@ -31,7 +31,8 @@
       "title": "Tarefas",
       "noTodos": "Você não possui tarefas a serem feitas!",
       "noTodosDescription": "Clique no botão",
-      "noTodosDescription2": "abaixo para criar uma tarefa!"
+      "noTodosDescription2": "abaixo para criar uma tarefa!",
+      "btn-clear": "Limpar tarefas concluídas"
     },
     "components": {
       "loading": {

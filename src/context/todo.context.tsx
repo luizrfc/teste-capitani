@@ -1,9 +1,9 @@
-import {uuidv4} from '@src/utils/hash';
-import {getStorage, removeStorage, setStorage} from '@src/utils/storage';
-import React, {createContext, useContext, useState} from 'react';
+import { uuidv4 } from '@src/utils/hash';
+import { getStorage, removeStorage, setStorage } from '@src/utils/storage';
+import React, { createContext, useContext, useState } from 'react';
 
-import {SubTaskDTO, TodoDTO} from '../shared/interfaces/todo.dto';
-import {useAuth} from './auth.context';
+import { SubTaskDTO, TodoDTO } from '../shared/interfaces/todo.dto';
+import { useAuth } from './auth.context';
 
 interface TodoContextData {
   todos: TodoDTO[];
@@ -16,12 +16,15 @@ interface TodoContextData {
   clearAllTodos: () => Promise<void>;
   loadTodos: () => Promise<void>;
   getTodo: (id: string) => TodoDTO | undefined;
+  subTasks: SubTaskDTO[];
+  clearCompletedTodos: () => Promise<void>;
 }
 
 const TodoContext = createContext<TodoContextData>({} as TodoContextData);
 
 export const TodoProvider = ({children}: {children: React.ReactNode}) => {
   const [todos, setTodos] = useState<TodoDTO[]>([]);
+  const [subTasks, setSubTasks] = useState<SubTaskDTO[]>([]);
 
   const {user} = useAuth();
 
@@ -51,6 +54,7 @@ export const TodoProvider = ({children}: {children: React.ReactNode}) => {
       return todo;
     });
     setTodos(newTodos);
+    setSubTasks(newTodos.find(todo => todo.id === id)?.subTasks || []);
     await saveTodos(newTodos);
   };
 
@@ -62,6 +66,7 @@ export const TodoProvider = ({children}: {children: React.ReactNode}) => {
       return todo;
     });
     setTodos(newTodos);
+    setSubTasks(newTodos.find(todo => todo.id === id)?.subTasks || []);
     await saveTodos(newTodos);
   };
 
@@ -76,6 +81,7 @@ export const TodoProvider = ({children}: {children: React.ReactNode}) => {
       return todo;
     });
     setTodos(newTodos);
+    setSubTasks(newTodos.find(todo => todo.id === todoId)?.subTasks || []);
     await saveTodos(newTodos);
   };
 
@@ -94,16 +100,26 @@ export const TodoProvider = ({children}: {children: React.ReactNode}) => {
       return todo;
     });
     setTodos(newTodos);
+    setSubTasks(newTodos.find(todo => todo.id === data.id)?.subTasks || []);
     await saveTodos(newTodos);
   };
 
-  const saveTodos = async (data: TodoDTO[]) => {
-    await setStorage(`${user?.id}:todos`, JSON.stringify(data));
+  const saveTodos = async (data: TodoDTO[], token = 'todos') => {
+    await setStorage(`${user?.id}:${token}`, JSON.stringify(data));
   };
 
   const clearAllTodos = async () => {
     setTodos([]);
     await removeStorage(`${user?.id}:todos`);
+    await removeStorage(`${user?.id}:completed`);
+  };
+
+  const clearCompletedTodos = async () => {
+    const newTodos = todos.filter(todo => !todo.completed);
+    const completedTodos = todos.filter(todo => todo.completed);
+    setTodos(newTodos);
+    await saveTodos(newTodos);
+    await saveTodos(completedTodos, 'completed');
   };
 
   const loadTodos = async () => {
@@ -114,6 +130,7 @@ export const TodoProvider = ({children}: {children: React.ReactNode}) => {
   };
 
   const getTodo = (id: string) => {
+    setSubTasks(todos.find(todo => todo.id === id)?.subTasks || []);
     return todos.find(todo => todo.id === id);
   };
 
@@ -130,6 +147,8 @@ export const TodoProvider = ({children}: {children: React.ReactNode}) => {
         clearAllTodos,
         loadTodos,
         getTodo,
+        subTasks,
+        clearCompletedTodos,
       }}>
       {children}
     </TodoContext.Provider>

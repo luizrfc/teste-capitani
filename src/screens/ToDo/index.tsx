@@ -1,23 +1,16 @@
-import {
-  Button,
-  ButtonAdd,
-  CheckBox,
-  Container,
-  Input,
-  Text,
-} from '@src/components';
-import React, {useEffect, useState} from 'react';
-import {useTranslation} from 'react-i18next';
-import {View} from 'react-native';
-import {useRoute} from '@react-navigation/native';
-import {colors} from '@src/styles/theme';
-import {useTodo} from '@src/context/todo.context';
+import { useRoute } from '@react-navigation/native';
+import { Button, ButtonAdd, CheckBox, Container, Input, Text } from '@src/components';
 import TodoList from '@src/containers/ToDo';
 import NewToDo from '@src/containers/ToDo/NewToDo';
-import {useConfig} from '@src/context/config.context';
-import {navigateTo} from '@src/hooks/useLinks';
-import {SubTaskDTO, TodoDTO} from '@src/shared/interfaces/todo.dto';
 import useToDoHook from '@src/containers/ToDo/useTodo';
+import { useConfig } from '@src/context/config.context';
+import { useTodo } from '@src/context/todo.context';
+import { navigateTo } from '@src/hooks/useLinks';
+import { SubTaskDTO, TodoDTO } from '@src/shared/interfaces/todo.dto';
+import { colors } from '@src/styles/theme';
+import React, { useEffect, useState } from 'react';
+import { useTranslation } from 'react-i18next';
+import { View } from 'react-native';
 
 function ToDo() {
   const {t} = useTranslation();
@@ -25,12 +18,12 @@ function ToDo() {
   const {control, isValid, handleSubmit, onUpdate, setValue} = useToDoHook();
   const {id} = route.params as {id: string};
 
-  const {getTodo, deleteTodo, addSubTask, deleteSubTask} = useTodo();
+  const {getTodo, deleteTodo, addSubTask, deleteSubTask, subTasks} = useTodo();
 
   const [todo, setTodo] = useState<TodoDTO>();
 
-  const loadData = () => {
-    const result = getTodo(id);
+  const loadData = async () => {
+    const result = await getTodo(id);
     setValue('id', result?.id || '');
     setValue('title', result?.title || '');
     setValue('description', result?.description || '', {
@@ -52,8 +45,9 @@ function ToDo() {
 
   const handleAddSubTask = async (data: TodoDTO | SubTaskDTO) => {
     handleLoading(true);
+    await addSubTask(data as SubTaskDTO, id);
+    await loadData();
     setTimeout(async () => {
-      await addSubTask(data as SubTaskDTO, id);
       handleModal(false);
       handleLoading(false);
     }, 1000);
@@ -122,11 +116,6 @@ function ToDo() {
               onPress={handleSubmit(onUpdate)}
               disabled={!isValid}
             />
-            <Button
-              title={t('details.btn-remove')}
-              variant="danger"
-              onPress={handleDeleteTodo}
-            />
           </View>
         </View>
         <View style={{flex: 1, marginVertical: 32}}>
@@ -134,7 +123,7 @@ function ToDo() {
             {t('details.subtasks')}
           </Text>
           <TodoList
-            data={todo?.subTasks || []}
+            data={subTasks || []}
             subtask={true}
             deleteSubTask={handleDeleteSubTask}
           />
@@ -146,6 +135,11 @@ function ToDo() {
             flexDirection: 'column',
             justifyContent: 'flex-end',
           }}>
+          <Button
+            title={t('details.btn-remove')}
+            variant="danger"
+            onPress={handleDeleteTodo}
+          />
           <Button
             title={t('details.btn-back')}
             variant="transparent"
