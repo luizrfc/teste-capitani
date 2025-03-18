@@ -28,13 +28,50 @@
       }
     },
     "home": {
-      "title": "Início",
-      "btn-logout": "Sair"
+      "title": "Tarefas",
+      "noTodos": "Você não possui tarefas a serem feitas!",
+      "noTodosDescription": "Clique no botão",
+      "noTodosDescription2": "abaixo para criar uma tarefa!"
     },
     "components": {
       "loading": {
         "loading": "Carregando"
       }
+    },
+    "profile": {
+      "title": "Perfil",
+      "name": "Nome",
+      "email": "E-mail",
+      "code": "Código",
+      "btn-logout": "Sair",
+      "btn-remove-account": "Remover conta",
+      "btn-remove-todos": "Remover todas as tarefas",
+      "btn-cancel": "Voltar"
+    },
+    "todo": {
+      "title": "Nova Tarefa",
+      "subtask": {
+        "title": "Nova Subtarefa"
+      },
+      "form": {
+        "title": "Título",
+        "title-placeholder": "Digite o título da tarefa",
+        "description": "Descrição",
+        "description-placeholder": "Digite a descrição da tarefa",
+        "btn-add": "Adicionar Tarefa",
+        "btn-subtask": "Adicionar Subtarefa",
+        "btn-cancel": "Cancelar"
+      }
+    },
+    "details": {
+      "title": "Detalhes da Tarefa",
+      "btn-remove": "Remover Tarefa",
+      "btn-back": "Listar Tarefas",
+      "subtasks": "Subtarefas",
+      "subtasks-none": "Não há subtarefas para esta tarefa!",
+      "btn-edit": "Salvar Tarefa",
+      "subtasks-count": "Subtarefas",
+      "completed": "Concluído"
     }
   }
 }

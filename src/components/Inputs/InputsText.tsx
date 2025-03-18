@@ -8,6 +8,9 @@ interface InputTextProps extends TextInputProps {
   maxLength?: number;
   placeholder?: string;
   helperText?: FieldError;
+  multiline?: boolean;
+  numberOfLines?: number;
+  value?: string;
 }
 const InputText = ({...props}: InputTextProps) => {
   return <TextInput {...props} />;

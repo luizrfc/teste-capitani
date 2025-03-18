@@ -1,8 +1,4 @@
-import {
-  authInitialValues,
-  authSchema,
-  IAuthSchema,
-} from '@src/helpers/schemas/auth.schema';
+import {authInitialValues, authSchema} from '@src/helpers/schemas/auth.schema';
 import {Keyboard} from 'react-native';
 import {
   Control,
@@ -17,12 +13,13 @@ import {useAuth} from '@src/context/auth.context';
 import {useConfig} from '@src/context/config.context';
 
 import {navigateTo} from '@src/hooks/useLinks';
+import {AuthDTO} from '@src/shared';
 
 interface IAuthHook {
-  control: Control<IAuthSchema>;
+  control: Control<AuthDTO>;
   reset: () => void;
-  handleSubmit: UseFormHandleSubmit<IAuthSchema>;
-  onSubmit: SubmitHandler<IAuthSchema>;
+  handleSubmit: UseFormHandleSubmit<AuthDTO>;
+  onSubmit: SubmitHandler<AuthDTO>;
   isValid: boolean;
 }
 
@@ -36,14 +33,14 @@ const useAuthHook = (): IAuthHook => {
     reset,
     handleSubmit,
     formState: {isValid},
-  } = useForm<IAuthSchema>({
+  } = useForm<AuthDTO>({
     resolver: yupResolver(authSchema),
     reValidateMode: 'onChange',
     mode: 'onChange',
     defaultValues: authInitialValues,
   });
 
-  const onSubmit = async (data: IAuthSchema) => {
+  const onSubmit = async (data: AuthDTO) => {
     handleLoading(true);
     Keyboard.dismiss();
     const response = await signIn(data.email, data.password);

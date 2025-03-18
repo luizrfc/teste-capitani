@@ -20,10 +20,7 @@ const InputStyle = styled(View)<InputProps>`
   border-color: ${props => (!props.error ? colors.danger : colors.greyLight)};
   background-color: ${props =>
     props.disabled ? colors.disabled : colors.white};
-  shadow-color: ${colors.black};
-  shadow-opacity: 0.1;
-  shadow-offset: 1px 1px;
-  elevation: 4;
+  border-radius: 8px;
 `;
 
 export {InputStyle};

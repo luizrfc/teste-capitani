@@ -15,6 +15,9 @@ interface IInputController extends React.ComponentProps<typeof TextInput> {
   password?: boolean;
   placeholder?: string;
   label?: string;
+  multiline?: boolean;
+  numberOfLines?: number;
+  _value?: string;
 }
 
 const Input = ({
@@ -23,6 +26,9 @@ const Input = ({
   password = false,
   placeholder,
   label,
+  multiline = false,
+  numberOfLines = 1,
+  _value,
 }: IInputController) => {
   const [actived, setActived] = useState(false);
   const [showError, setShowError] = useState<FieldError>();
@@ -31,16 +37,19 @@ const Input = ({
 
   return (
     <View style={{flexDirection: 'column', gap: 10}}>
-      <View>
-        <Text fontSize={16} fontWeight="bold" color={theme.colors.grey2}>
-          {label}
-        </Text>
-      </View>
+      {label && (
+        <View>
+          <Text fontSize={16} fontWeight="bold" color={theme.colors.grey2}>
+            {label}
+          </Text>
+        </View>
+      )}
       <InputStyle actived={actived} error={!showError} icon={password}>
         <View style={{width: '100%', flexDirection: 'row'}}>
           <Controller
             control={control}
             name={name}
+            defaultValue={_value}
             render={({
               field: {onChange, onBlur, value},
               fieldState: {error, isTouched},
@@ -51,7 +60,7 @@ const Input = ({
 
               return (
                 <InputText
-                  defaultValue={value}
+                  defaultValue={_value}
                   value={value}
                   onChangeText={onChange}
                   onFocus={() => setActived(true)}
@@ -67,7 +76,13 @@ const Input = ({
                     letterSpacing: 0.8,
                     fontSize: 16,
                     flex: 1,
+                    ...(multiline && {
+                      height: 100,
+                      textAlignVertical: 'top',
+                    }),
                   }}
+                  multiline={multiline}
+                  numberOfLines={numberOfLines}
                 />
               );
             }}
@@ -79,7 +94,7 @@ const Input = ({
               style={{
                 display: 'flex',
                 justifyContent: 'center',
-                alignItems: 'center'
+                alignItems: 'center',
               }}>
               <Icon
                 name={showPassword ? 'eye' : 'eye-blocked'}

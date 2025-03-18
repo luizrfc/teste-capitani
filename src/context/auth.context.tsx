@@ -1,8 +1,8 @@
-import React, {createContext, useContext, useState} from 'react';
-import {navigateTo} from '@src/hooks/useLinks';
-import {UserDTO} from '@src/shared/interfaces/auth.dto';
-import {encriptUser, uuidv4} from '@src/utils/hash';
-import {getStorage, removeStorage, setStorage} from '@src/utils/storage';
+import { navigateTo } from '@src/hooks/useLinks';
+import { UserDTO } from '@src/shared/interfaces/auth.dto';
+import { encriptUser, uuidv4 } from '@src/utils/hash';
+import { getStorage, removeStorage, setStorage } from '@src/utils/storage';
+import React, { createContext, useContext, useState } from 'react';
 
 interface AuthContextData {
   user: UserDTO | null;
@@ -10,6 +10,7 @@ interface AuthContextData {
   signOut: () => Promise<void>;
   createUser: (data: UserDTO) => Promise<UserDTO | null>;
   loadUser: () => Promise<boolean>;
+  removeAccount: () => Promise<void>;
 }
 
 const AuthContext = createContext<AuthContextData>({} as AuthContextData);
@@ -81,8 +82,19 @@ export const AuthProvider = ({children}: {children: React.ReactNode}) => {
     return false;
   };
 
+  const removeAccount = async () => {
+    const users = await getStorage('users');
+    const _users = JSON.parse(users);
+    const _user = _users.find((u: UserDTO) => u.code === user?.code);
+    if (_user) {
+      _users.splice(_users.indexOf(_user), 1);
+      await setStorage('users', JSON.stringify(_users));
+    }
+  };
+
   return (
-    <AuthContext.Provider value={{user, signIn, signOut, createUser, loadUser}}>
+    <AuthContext.Provider
+      value={{user, signIn, signOut, createUser, loadUser, removeAccount}}>
       {children}
     </AuthContext.Provider>
   );

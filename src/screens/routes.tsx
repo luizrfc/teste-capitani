@@ -1,13 +1,15 @@
-import {NavigationContainer} from '@react-navigation/native';
-import {createNativeStackNavigator} from '@react-navigation/native-stack';
+import { NavigationContainer } from '@react-navigation/native';
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import Header from '@src/containers/header';
+import { navigationRef } from '@src/hooks/useLinks';
 import React from 'react';
 
 import Auth from './Auth';
 import Home from './Home';
+import Profile from './Profile';
 import Register from './Register';
 import Splash from './Splash';
-import {navigationRef} from '@src/hooks/useLinks';
+import ToDo from './ToDo';
 
 const {Navigator, Screen} = createNativeStackNavigator();
 
@@ -32,6 +34,8 @@ function Routes() {
         <Screen name="Auth" component={Auth} />
         <Screen name="Home" component={Home} />
         <Screen name="Register" component={Register} />
+        <Screen name="Profile" component={Profile} />
+        <Screen name="ToDo" component={ToDo} />
       </Navigator>
     </NavigationContainer>
   );

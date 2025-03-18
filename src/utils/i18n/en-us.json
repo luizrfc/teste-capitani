@@ -28,13 +28,50 @@
       }
     },
     "home": {
-      "title": "Home",
-      "btn-logout": "Logout"
+      "title": "Todo List",
+      "noTodos": "You don't have any tasks to do!",
+      "noTodosDescription": "Click on the button",
+      "noTodosDescription2": "below to create a task!"
     },
     "components": {
       "loading": {
         "loading": "Loading"
       }
+    },
+    "profile": {
+      "title": "Profile",
+      "name": "Name",
+      "email": "E-mail",
+      "code": "Code",
+      "btn-logout": "Logout",
+      "btn-remove-account": "Remove account",
+      "btn-remove-todos": "Remove all tasks",
+      "btn-cancel": "Back to home"
+    },
+    "todo": {
+      "title": "New Task",
+      "subtask": {
+        "title": "New Subtask"
+      },
+      "form": {
+        "title": "Title",
+        "title-placeholder": "Enter the task title",
+        "description": "Description",
+        "description-placeholder": "Enter the task description",
+        "btn-add": "Add Task",
+        "btn-subtask": "Add Subtask",
+        "btn-cancel": "Cancel"
+      }
+    },
+    "details": {
+      "title": "Task Details",
+      "btn-remove": "Remove Task",
+      "btn-back": "Back to Home",
+      "subtasks": "Subtasks",
+      "subtasks-none": "There are no subtasks for this task!",
+      "btn-edit": "Save Task",
+      "subtasks-count": "Subtasks",
+      "completed": "Completed"
     }
   }
 }

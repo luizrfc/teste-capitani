@@ -20,6 +20,7 @@ function Container({
     <ScrollView
       scrollEnabled={scrollEnabled}
       style={{
+        flex: 1,
         padding: 24,
         backgroundColor: bgColor || '#fff',
         ...style,

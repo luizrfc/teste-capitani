@@ -1,20 +1,33 @@
+import {ButtonAdd, Container, Text} from '@src/components';
 import React from 'react';
 import {useTranslation} from 'react-i18next';
-import {Button, Container, Text} from '@src/components';
-import {useAuth} from '@src/context/auth.context';
+import useHomeHook from './home.hook';
+import {View} from 'react-native';
+import TodoList from '@src/containers/ToDo';
+import {useConfig} from '@src/context/config.context';
+import NewToDo from '@src/containers/ToDo/NewToDo';
 
 function Home() {
   const {t} = useTranslation();
-  const {signOut} = useAuth();
+  const {todos} = useHomeHook();
+  const {handleModal} = useConfig();
 
   return (
-    <Container>
-      <Text fontSize={20} fontWeight="bold" color="#000">
-        {t('home.title')}
-      </Text>
+    <>
+      <Container scrollEnabled={true}>
+        <View style={{width: '100%'}}>
+          <Text fontSize={32} fontWeight="bold" style={{marginBottom: 10}}>
+            {t('home.title')}
+          </Text>
+        </View>
 
-      <Button title={t('home.btn-logout')} onPress={signOut} />
-    </Container>
+        <View style={{flexWrap: 'wrap'}}>
+          <TodoList data={todos} />
+        </View>
+      </Container>
+      <NewToDo />
+      <ButtonAdd onPress={() => handleModal(true)} />
+    </>
   );
 }
 

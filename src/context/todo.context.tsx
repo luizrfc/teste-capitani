@@ -1,6 +1,6 @@
 import {uuidv4} from '@src/utils/hash';
 import {getStorage, removeStorage, setStorage} from '@src/utils/storage';
-import React, {createContext, useContext, useEffect, useState} from 'react';
+import React, {createContext, useContext, useState} from 'react';
 
 import {SubTaskDTO, TodoDTO} from '../shared/interfaces/todo.dto';
 import {useAuth} from './auth.context';
@@ -10,10 +10,12 @@ interface TodoContextData {
   createTodo: (data: TodoDTO) => Promise<void>;
   addSubTask: (data: SubTaskDTO, id: string) => Promise<void>;
   updateSubTask: (data: SubTaskDTO, id: string) => Promise<void>;
-  deleteSubTask: (id: string) => Promise<void>;
+  deleteSubTask: (id: string, todoId: string) => Promise<void>;
   deleteTodo: (id: string) => Promise<void>;
-  updateTodo: (data: TodoDTO, id: string) => Promise<void>;
+  updateTodo: (data: TodoDTO) => Promise<void>;
   clearAllTodos: () => Promise<void>;
+  loadTodos: () => Promise<void>;
+  getTodo: (id: string) => TodoDTO | undefined;
 }
 
 const TodoContext = createContext<TodoContextData>({} as TodoContextData);
@@ -26,6 +28,7 @@ export const TodoProvider = ({children}: {children: React.ReactNode}) => {
   const createTodo = async (data: TodoDTO) => {
     const newTodo = {
       ...data,
+      subTasks: [],
       createdAt: new Date(),
       updatedAt: new Date(),
       id: uuidv4(),
@@ -37,6 +40,7 @@ export const TodoProvider = ({children}: {children: React.ReactNode}) => {
   const addSubTask = async (data: SubTaskDTO, id: string) => {
     const newTodo = {
       ...data,
+      id: uuidv4(),
       createdAt: new Date(),
       updatedAt: new Date(),
     };
@@ -61,12 +65,12 @@ export const TodoProvider = ({children}: {children: React.ReactNode}) => {
     await saveTodos(newTodos);
   };
 
-  const deleteSubTask = async (id: string) => {
+  const deleteSubTask = async (id: string, todoId: string) => {
     const newTodos = todos.map(todo => {
-      if (todo.id === id) {
+      if (todo.id === todoId) {
         return {
           ...todo,
-          subTasks: todo.subTasks?.filter(subTask => subTask.id !== id),
+          subTasks: todo.subTasks?.filter(subTask => subTask.id !== id) || [],
         };
       }
       return todo;
@@ -81,10 +85,11 @@ export const TodoProvider = ({children}: {children: React.ReactNode}) => {
     await saveTodos(newTodos);
   };
 
-  const updateTodo = async (data: TodoDTO, id: string) => {
+  const updateTodo = async (data: TodoDTO) => {
+    console.log('🚀 ~ updateTodo ~ data:', data);
     const newTodos = todos.map(todo => {
-      if (todo.id === id) {
-        return {...todo, ...data};
+      if (todo.id === data.id) {
+        return {...todo, ...data, updatedAt: new Date()};
       }
       return todo;
     });
@@ -93,25 +98,24 @@ export const TodoProvider = ({children}: {children: React.ReactNode}) => {
   };
 
   const saveTodos = async (data: TodoDTO[]) => {
-    await setStorage(`${user?.id}-todos`, JSON.stringify(data));
+    await setStorage(`${user?.id}:todos`, JSON.stringify(data));
   };
 
   const clearAllTodos = async () => {
     setTodos([]);
-    await removeStorage(`${user?.id}-todos`);
+    await removeStorage(`${user?.id}:todos`);
   };
 
   const loadTodos = async () => {
-    const _todos = await getStorage(`${user?.id}-todos`);
+    const _todos = await getStorage(`${user?.id}:todos`);
     if (_todos) {
       setTodos(JSON.parse(_todos));
     }
   };
 
-  useEffect(() => {
-    loadTodos();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  const getTodo = (id: string) => {
+    return todos.find(todo => todo.id === id);
+  };
 
   return (
     <TodoContext.Provider
@@ -124,6 +128,8 @@ export const TodoProvider = ({children}: {children: React.ReactNode}) => {
         deleteTodo,
         updateTodo,
         clearAllTodos,
+        loadTodos,
+        getTodo,
       }}>
       {children}
     </TodoContext.Provider>

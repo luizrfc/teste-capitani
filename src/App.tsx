@@ -11,6 +11,7 @@ import useLanguage from './hooks/useLanguage';
 import Routes from './screens/routes';
 
 import '@src/utils/i18n';
+import { TodoProvider } from './context/todo.context';
 
 function App(): JSX.Element {
   const {getLanguage} = useLanguage();
@@ -26,8 +27,10 @@ function App(): JSX.Element {
         <GestureHandlerRootView>
           <ConfigProvider>
             <AuthProvider>
-              <Loading />
-              <Routes />
+              <TodoProvider>
+                <Loading />
+                <Routes />
+              </TodoProvider>
             </AuthProvider>
           </ConfigProvider>
         </GestureHandlerRootView>

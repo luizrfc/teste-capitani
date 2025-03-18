@@ -18,8 +18,8 @@ function Loading() {
   return (
     loading && (
       <Animated.View
-        entering={FadeIn}
-        exiting={FadeOut}
+        entering={FadeIn.duration(250)}
+        exiting={FadeOut.duration(250)}
         style={{
         position: 'absolute',
         zIndex: 1000,
@@ -34,8 +34,8 @@ function Loading() {
         backgroundColor: 'rgba(0, 0, 0, 0.8)',
       }}>
       <Animated.View
-        entering={FadeInUp.duration(500)}
-        exiting={FadeOutDown}
+        entering={FadeInUp.duration(300)}
+        exiting={FadeOutDown.duration(150)}
         style={{
           justifyContent: 'center',
           alignItems: 'center',

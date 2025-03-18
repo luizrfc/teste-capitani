@@ -1,11 +1,12 @@
-import React from 'react';
-import {TouchableOpacity, TouchableOpacityProps} from 'react-native';
-import {Text} from '@src/components';
+import {Icon, Text} from '@src/components';
+import {ButtonStyle} from '@src/styles/button.style';
 import {colors} from '@src/styles/theme';
+import React from 'react';
+import {TouchableOpacityProps} from 'react-native';
 
 interface ButtonProps extends TouchableOpacityProps {
   children?: React.ReactNode;
-  variant?: 'primary' | 'secondary';
+  variant?: 'primary' | 'secondary' | 'transparent' | 'danger';
   size?: 'sm' | 'md' | 'lg';
   icon?: string;
   loading?: boolean;
@@ -23,9 +24,13 @@ const Button = ({
   bgColor,
   onPress,
   disabled = false,
+  icon,
 }: ButtonProps) => {
   return (
-    <TouchableOpacity
+    <ButtonStyle
+      variant={variant}
+      size={size}
+      disabled={disabled}
       onPress={onPress}
       style={{
         backgroundColor: disabled
@@ -36,8 +41,8 @@ const Button = ({
         alignItems: 'center',
         justifyContent: 'center',
       }}
-      disabled={disabled}
       activeOpacity={0.6}>
+      {icon && <Icon name={icon} size={24} color={colors.white} />}
       {title ? (
         <Text
           color={disabled ? colors.grey : colors[`${variant}Dark`]}
@@ -48,7 +53,7 @@ const Button = ({
       ) : (
         children
       )}
-    </TouchableOpacity>
+    </ButtonStyle>
   );
 };
 

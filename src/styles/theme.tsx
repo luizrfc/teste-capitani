@@ -19,11 +19,12 @@ export const colors = {
   secondaryLight: '#FFE8E6',
   secondaryDark: '#93160e',
   background: '#F6F8F9',
+  separator: '#e8e8e8',
   black: '#000',
   white: '#FFF',
   greyLight: '#dbdbdb',
   greyDark: '#535353',
-  grey: '#979797',
+  grey: '#dbdbdb',
   light: '#FFFFFF',
   disabled: '#E3E3E3',
   success: '#2CDCBE',
@@ -31,6 +32,11 @@ export const colors = {
   warning: '#f0ad4e',
   danger: '#d9534f',
   errorBackground: '#fff6f6',
+  transparent: 'transparent',
+  transparentLight: '#FFFFFF',
+  transparentDark: '#535353',
+  dangerLight: '#FFE8E6',
+  dangerDark: '#93160e',
 };
 
 export default theme;

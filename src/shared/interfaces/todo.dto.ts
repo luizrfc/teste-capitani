@@ -1,11 +1,11 @@
 export interface TodoDTO {
-  id: string;
+  id?: string;
   title: string;
-  description: string;
+  description?: string;
   completed: boolean;
-  createdAt: Date;
+  createdAt?: Date;
   updatedAt?: Date | null;
-  subTasks?: SubTaskDTO[] | null;
+  subTasks: SubTaskDTO[] | null;
 }
 
 export interface SubTaskDTO {

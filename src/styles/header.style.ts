@@ -1,7 +1,7 @@
-import styled from 'styled-components';
-import {TouchableOpacity, View} from 'react-native';
+import { Image } from '@rneui/base';
+import { TouchableOpacity, View } from 'react-native';
 import LinearGradient from 'react-native-linear-gradient';
-import {Image} from '@rneui/base';
+import styled from 'styled-components';
 
 const HeaderGradient = styled(LinearGradient)`
   justify-content: flex-end;
@@ -15,11 +15,36 @@ const LogoImage = styled(Image)`
   height: 55;
 `;
 
-const LanguageContainer = styled(View)`
-  margin-top: 36;
-  margin-bottom: 36;
+interface UserContainerProps {
+  hasUser: boolean;
+}
+
+const HeaderContainer = styled(View)<UserContainerProps>`
+  width: 100%;
   flex-direction: row;
   align-items: center;
+  justify-content: space-between;
+  margin-top: 36;
+  margin-bottom: 36;
+  padding-horizontal: 24;
+  flex-direction: row;
+  align-items: center;
+  gap: 12;
+`;
+
+const UserContainer = styled(View)`
+  flex: 1;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 12;
+`;
+
+const LanguageContainer = styled(View)`
+  flex: 1;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
   gap: 12;
 `;
 
@@ -62,4 +87,6 @@ export {
   BtnLanguage,
   Separator,
   SeparatorItem,
+  HeaderContainer,
+  UserContainer,
 };

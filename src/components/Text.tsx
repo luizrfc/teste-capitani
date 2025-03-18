@@ -8,6 +8,8 @@ interface TextProps {
   color?: string;
   textAlign?: 'left' | 'center' | 'right';
   textTransform?: 'uppercase' | 'lowercase' | 'capitalize' | 'none';
+  style?: object;
+  numberOfLines?: number;
 }
 
 function Text({
@@ -17,15 +19,19 @@ function Text({
   color = '#000',
   textAlign = 'left',
   textTransform = 'none',
+  style,
+  numberOfLines,
 }: TextProps) {
   return (
     <RNText
+      numberOfLines={numberOfLines}
       style={{
         fontSize,
         fontWeight,
         color,
         textAlign,
         textTransform,
+        ...style,
       }}>
       {children}
     </RNText>
