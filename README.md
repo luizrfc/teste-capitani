@@ -1,5 +1,3 @@
-
-```markdown:README.md
 # Projeto To Do List
 
 Este é um projeto de teste para a empresa Capitani, um To Do List desenvolvido com React Native e Typescript, com objetivo de validar o conhecimento e aplicação de conceitos de React Native, Context API, Styled Components, React Navigation, React Native Reanimated e Async Storage.
@@ -79,4 +77,3 @@ yarn ios
 ## Contribuição
 
 Contribuições são bem-vindas! Sinta-se à vontade para abrir issues ou enviar pull requests.
-```
